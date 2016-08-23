@@ -109,6 +109,10 @@ class store extends php_obj implements log_writer {
             $this->get_config('username', ''),
             $this->get_config('password', '')
         ));
+        if (!empty($CFG->proxyhost)) {
+          $remote_lrs->setProxy($CFG->proxyhost.':'.$CFG->proxyport);
+        }
+        return new xapi_repository($remote_lrs);
     }
 
     /**
